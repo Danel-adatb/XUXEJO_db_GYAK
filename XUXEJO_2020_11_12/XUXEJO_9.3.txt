@@ -1,0 +1,28 @@
+CREATE TABLE `TANFOLYAM` (
+	`tkod` INT,
+	`ar` INT CHECK (ar>0),
+	`megnevezes` VARCHAR(50),
+	`tipus` VARCHAR(1),
+	PRIMARY KEY (`tkod`)
+);
+
+CREATE TABLE `BEFIZETES` (
+	`kurzus` INT,
+	`diak` BIGINT,
+	`befizetes` INT(50),
+	FOREIGN KEY (`kurzus`) REFERENCES tanfolyam(tkod)
+	FOREIGN KEY (`diak`) REFERENCES resztvevo(tajszam)
+);
+
+CREATE TABLE `RESZTVEVO` (
+	`tajszam` VARCHAR(12),
+	`nev` VARCHAR(50),
+	`lakcim` VARCHAR(100),
+	PRIMARY KEY (`tajszam`)
+);
+
+- SELECT COUNT(*) FROM tanfolyam ORDER BY tipus
+- SELECT COUNT(*) FROM befizetes ORDER BY tanfolyam.tkod
+- SELECT COUNT(befizetes.*) FROM befizetes ORDER BY tanfolyam.megnevezes
+- 
+- 
