@@ -1,5 +1,0 @@
-- SELECT AVG(ar) FROM Tanfolyam GROUP BY tipus
-
-- SELECT name, IF(ar>100000, "Draga", "Olcso") FROM Tanfolyam
-
-- SELECT name if(db>10, "Sok", "Keves") FROM Tanfolyam
