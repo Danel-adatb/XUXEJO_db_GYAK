@@ -1,2 +1,0 @@
-- ALTER TABLE TERMEK
-  ADD kategoria varchar(50)
