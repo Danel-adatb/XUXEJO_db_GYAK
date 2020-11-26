@@ -1,0 +1,23 @@
+1. SELECT Autó.Rendszám, Tulajdonos.Név FROM Autó, Tulajdonos
+
+2. SELECT Autó.Tipus FROM Autó JOIN Tulajdonos WHERE Tulajdonos.Város = 'Miskolc';
+
+3. SELECT Autó.Tipus, Kor.Ár, Kategória.Knév FROM Autó, Kor, Kategória;
+
+4. SELECT Tulajdonos.Név, Autó.Rendszám FROM Tulajdonos, Autó;
+
+5. 
+
+6.
+
+7.
+
+8.
+
+9.
+
+10.
+
+11.
+
+12.
