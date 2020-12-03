@@ -1,0 +1,36 @@
+Kilistázza az összes Nemzetiség nevét:
+SELECT Név FROM Nemzetiség;
+π Név Nemzetiség
+Kilistázza az összes Szakasz nevét:
+SELECT Név FROM Szakasz;
+π Név Szakasz
+Megmondja, hogy van-e olyan Autó, amit Versenyzőről neveztek el:
+SELECT Autó.AutóNév, Versenyző.Vezetéknév FROM Autó JOIN Versenyző ON Autó.AutóNév = Versenyző.Vezetéknév WHERE AutóNév = Vezetéknév;
+π Autó.AutóNév ,Versenyző.Vezetéknév [ σ AutóNév = Vezetéknév (Versenyző ⨝ Autó.AutóNév = Versenyző.Vezetéknév Autó)]
+Megmondja, hogy adott Szakasz hány darab Országban ment le:
+SELECT COUNT(Ország.OrszágID) FROM Ország JOIN Szakasz WHERE Ország.Név = Szakasz.Név
+Γ COUNT(Ország.OrszágID) [σ Ország.Név = Szakasz.név (Ország ⨝Ország.Név=Szakasz.Név Szakasz)]
+Kiírja a Versenyzők teljes nevét:
+SELECT Versenyző.Vezetéknév, Versenyző_Keresztnév.Keresztnév FROM Versenyző JOIN Versenyző_Keresztnév ON Versenyző.VKód = Versenyző_Keresztnév.VKód
+π Versenyző.Vezetéknév,Versenyző_Keresztnév.Keresztnév(Versenyző ⨝Versenyző.VKód = Versenyző_Keresztnév.VKód Versenyző_Keresztnév)
+
+Kiírja a versenyben lévő Autók adataid:
+SELECT * FROM Autó WHERE Versenyben = ’igen’;
+π* (σ Versenyben = ’igen’(Autó))
+Megszámolja adott Szakasznak hány Autója van:
+SELECT Szakasz.Név, COUNT(Autó.AutóNév) AS Autók_Száma FROM Autó LEFT JOIN Szakasz ON Autó.AutóNév = Szakasz.Név GROUP BY Szakasz.Név;
+Γ Szakasz.NévSzakasz.Név,COUNT(Autó.AutóNév)Autó[Autó ⨝Autó.AutóNév = Szakasz.Név Szakasz]
+Megszámolja adott Nemzetiségeknek hány Versenyzője van számon tartva:
+SELECT Nemzetiség.Név as Nemzetiség, COUNT(Versenyző.Vezetéknév) AS Versenyzők_Száma FROM Nemzetiség LEFT JOIN Versenyző ON Nemzetiség.NemzetKód = Versenyző.NemzetKód GROUP BY Nemzetiség.Név;
+Γ Nemzetiség.NévNemzetiség.Név,COUNT(Versenyző.Vezetéknév)Nemzetiség[Nemzetiség ⨝Nemzetiség.NemzetKód = Versenyző.NemzetKód Versenyző]
+ 
+Kilistázza azon szakaszok nevét, ahol Ford Fiesta R5-ök versenyeztek
+SELECT Szakasz.Név FROM Szakasz JOIN Autó ON Szakasz.Név = Autó.AutóNév WHERE AutóNév='ford_fiesta_r5'
+π AutóNév [ AutóNév = ’ford_fiesta_r5’ (Autó ⨝Autó.Név=Szakasz.Név Szakasz)]
+Murva szakaszok száma:
+SELECT COUNT(Név) from Szakasz WHERE Felület = ’murva’
+σFelület = ’murva’ [Γ count(Név)]
+Módosítások:
+UPDATE Versenyző SET Vezetéknév='daniel' WHERE Nemzetkód=5;
+ALTER TABLE Autó RENAME COLUMN Versenyben TO DNF;
+DROP TABLE tulajdonos(ok);

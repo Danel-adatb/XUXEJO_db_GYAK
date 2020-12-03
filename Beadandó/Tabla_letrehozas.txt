@@ -1,0 +1,55 @@
+CREATE TABLE Nemzetiség (
+NemzetKód INT NOT NULL,
+Név VARCHAR(50) NOT NULL,
+PRIMARY KEY (NemzetKód)
+);
+CREATE TABLE Versenyző(
+VKód INT NOT NULL,
+Vezetéknév VARCHAR(50) NOT NULL,
+NemzetKód INT NOT NULL,
+PRIMARY KEY (VKód),
+FOREIGN KEY (NemzetKód) REFERENCES Nemzetiség(NemzetKód)
+);
+CREATE TABLE Versenyző_Keresztnév(
+Keresztnév VARCHAR(50) NOT NULL,
+VKód INT NOT NULL,
+PRIMARY KEY (Keresztnév),
+FOREIGN KEY (VKód) REFERENCES Versenyző(VKód)
+);
+CREATE TABLE Szakasz(
+Név VARCHAR(50) NOT NULL,
+Hőmérséklet INT NOT NULL,
+Hossz INT NOT NULL,
+Felület VARCHAR(50) NOT NULL,
+VKód INT NOT NULL,
+PRIMARY KEY (Név),
+FOREIGN KEY (VKód) REFERENCES Versenyző(VKód)
+);
+CREATE TABLE Autó(
+AutóNév VARCHAR(50) NOT NULL,
+Versenyben VARCHAR(4) NOT NULL,
+Név VARCHAR(50) NOT NULL,
+PRIMARY KEY (AutóNév),
+FOREIGN KEY (Név) REFERENCES Szakasz(Név)
+);
+CREATE TABLE Ország(
+OrszágID INT NOT NULL,
+Név VARCHAR(50) NOT NULL,
+PRIMARY KEY (OrszágID),
+FOREIGN KEY (Név) REFERENCES Szakasz(Név)
+);
+ 
+CREATE TABLE Tulajdonos(
+AutóNév VARCHAR(50) NOT NULL,
+NemzetKód INT NOT NULL,
+PRIMARY KEY (AutóNév, NemzetKód),
+FOREIGN KEY (AutóNév) REFERENCES Autó(AutóNév),
+FOREIGN KEY (NemzetKód) REFERENCES Nemzetiség(NemzetKód)
+);
+CREATE TABLE Környezet_adatai (
+Sérült_autó VARCHAR(15) NOT NULL,
+Név VARCHAR(50) NOT NULL,
+Autó_Neve VARCHAR(50) NOT NULL,
+FOREIGN KEY (Név) REFERENCES Szakasz(Név),
+FOREIGN KEY (Autó_Neve) REFERENCES  Autó(AutóNév)
+); 
